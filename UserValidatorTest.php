@@ -7,103 +7,113 @@ class UserValidatorTest
     {
         $validator = new UserValidator();
         $email = "test@example.com";
-        if ($validator->validateEmail($email)) {
-            echo "Passed\n";
-        } else {
-            echo "Email is invalid.\n";
+        $expectedValidationResult = true;  
+        if (!($validator->validateEmail($email) == $expectedValidationResult)) {
+            echo 'Test ' . __FUNCTION__ . ' failed';
         }
+        echo ".";
     }
+
     public function TestEmailValidatorWithDomainAndSubdomain()
     {
         $validator = new UserValidator();
         $email = "test@example.net.com";
-        if ($validator->validateEmail($email)) {
-            echo "Passed\n";
-        } else {
-            echo "Email is invalid.\n";
+        $expectedValidationResult = true;  
+        if (!($validator->validateEmail($email) == $expectedValidationResult)) {
+            echo 'Test ' . __FUNCTION__ . ' failed';
         }
+        echo ".";
     }
+
     public function TestEmailValidatorWithTwoDot()
     {
         $validator = new UserValidator();
         $email = "test@example..com";
-        if ($validator->validateEmail($email)) {
-            echo "Passed\n";
-        } else {
-            echo "Email is invalid.\n";
+        $expectedValidationResult = false;  
+        if (!($validator->validateEmail($email) == $expectedValidationResult)) {
+            echo 'Test ' . __FUNCTION__ . ' failed';
         }
+        echo ".";
     }
+
     public function TestEmailValidatorWithNumberOnFirstCharacter()
     {
         $validator = new UserValidator();
         $email = "1@example.com";
-        if ($validator->validateEmail($email)) {
-            echo "Passed\n";
-        } else {
-            echo "Email is invalid.\n";
+        $expectedValidationResult = false;
+        if (!($validator->validateEmail($email) == $expectedValidationResult)) {
+            echo 'Test ' . __FUNCTION__ . ' failed';
         }
+        echo ".";
     }
+
     public function TestEmailValidatorWithOneCharacterAfterDot()
     {
         $validator = new UserValidator();
         $email = "test@example.c";
-        if ($validator->validateEmail($email)) {
-            echo "Passed\n";
-        } else {
-            echo "Email is invalid.\n";
+        $expectedValidationResult = false;
+        if (!($validator->validateEmail($email) == $expectedValidationResult)) {
+            echo 'Test ' . __FUNCTION__ . ' failed';
         }
+        echo ".";
     }
+
     public function TestPasswordValidationWithTheConditions()
     {
         $validator = new UserValidator();
         $password = "Secret123!";
-        if ($validator->validatePassword($password)) {
-            echo "Passed\n";
-        } else {
-            echo "Password is invalid.\n";
+        $expectedValidationResult = true;
+        if (!($validator->validatePassword($password) == $expectedValidationResult)) {
+            echo 'Test ' . __FUNCTION__ . ' failed';
         }
+        echo ".";
     }
+
     public function TestPasswordValidationShorterThanEightCharacters()
     {
         $validator = new UserValidator();
         $password = "Ss123!";
-        if ($validator->validatePassword($password)) {
-            echo "Passed\n";
-        } else {
-            echo "Password is invalid.\n";
+        $expectedValidationResult = false;
+        if (!($validator->validatePassword($password) == $expectedValidationResult)) {
+            echo 'Test ' . __FUNCTION__ . ' failed';
         }
+        echo ".";
     }
+
     public function TestPasswordValidationWithoutLowercaseCharacter()
     {
         $validator = new UserValidator();
         $password = "SECRET123!!";
-        if ($validator->validatePassword($password)) {
-            echo "Passed\n";
-        } else {
-            echo "Password is invalid.\n";
+        $expectedValidationResult = false;
+        if (!($validator->validatePassword($password) == $expectedValidationResult)) {
+            echo 'Test ' . __FUNCTION__ . ' failed';
         }
+        echo ".";
     }
+
     public function TestPasswordValidationWithoutUppercaseCharacter()
     {
         $validator = new UserValidator();
         $password = "secret123!";
-        if ($validator->validatePassword($password)) {
-            echo "Passed\n";
-        } else {
-            echo "Password is invalid.\n";
+        $expectedValidationResult = false;
+        if (!($validator->validatePassword($password) == $expectedValidationResult)) {
+            echo 'Test ' . __FUNCTION__ . ' failed';
         }
+        echo ".";
     }
+
     public function TestPasswordValidationWithoutSpecialCharacter()
     {
         $validator = new UserValidator();
         $password = "Secret12345";
-        if ($validator->validatePassword($password)) {
-            echo "Passed\n";
-        } else {
-            echo "Password is invalid.\n";
+        $expectedValidationResult = false;
+        if (!($validator->validatePassword($password) == $expectedValidationResult)) {
+            echo 'Test ' . __FUNCTION__ . ' failed';
         }
+        echo ".";
     }
 }
+
 $test = new UserValidatorTest();
 $test->TestEmailValidatorWithDomain();
 echo ("<br>");
@@ -126,3 +136,4 @@ $test->TestPasswordValidationWithoutUppercaseCharacter();
 echo ('<br>');
 $test->TestPasswordValidationWithoutSpecialCharacter();
 echo ('<br>');
+?>
