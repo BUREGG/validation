@@ -1,7 +1,7 @@
 <?php
 require_once 'UserValidator.php';
 
-class ValidatorTest
+class UserValidatorTest
 {
     public function TestEmailValidatorWithDomain()
     {
@@ -104,7 +104,7 @@ class ValidatorTest
         }
     }
 }
-$test = new ValidatorTest();
+$test = new UserValidatorTest();
 $test->TestEmailValidatorWithDomain();
 echo ("<br>");
 $test->TestEmailValidatorWithDomainAndSubdomain();
