@@ -1,7 +1,7 @@
 <?php
 require_once 'UserValidator.php';
 
-class EmailValidatorTest
+class ValidatorTest
 {
     public function TestEmailValidatorWithDomain()
     {
@@ -53,16 +53,76 @@ class EmailValidatorTest
             echo "Email is invalid.\n";
         }
     }
-    
+    public function TestPasswordValidationWithTheConditions()
+    {
+        $validator = new UserValidator();
+        $password = "Secret123!";
+        if ($validator->validatePassword($password)) {
+            echo "Passed\n";
+        } else {
+            echo "Password is invalid.\n";
+        }
+    }
+    public function TestPasswordValidationShorterThanEightCharacters()
+    {
+        $validator = new UserValidator();
+        $password = "Ss123!";
+        if ($validator->validatePassword($password)) {
+            echo "Passed\n";
+        } else {
+            echo "Password is invalid.\n";
+        }
+    }
+    public function TestPasswordValidationWithoutLowercaseCharacter()
+    {
+        $validator = new UserValidator();
+        $password = "SECRET123!!";
+        if ($validator->validatePassword($password)) {
+            echo "Passed\n";
+        } else {
+            echo "Password is invalid.\n";
+        }
+    }
+    public function TestPasswordValidationWithoutUppercaseCharacter()
+    {
+        $validator = new UserValidator();
+        $password = "secret123!";
+        if ($validator->validatePassword($password)) {
+            echo "Passed\n";
+        } else {
+            echo "Password is invalid.\n";
+        }
+    }
+    public function TestPasswordValidationWithoutSpecialCharacter()
+    {
+        $validator = new UserValidator();
+        $password = "Secret12345";
+        if ($validator->validatePassword($password)) {
+            echo "Passed\n";
+        } else {
+            echo "Password is invalid.\n";
+        }
+    }
 }
-$test = new EmailValidatorTest();
+$test = new ValidatorTest();
 $test->TestEmailValidatorWithDomain();
-echo("<br>");
+echo ("<br>");
 $test->TestEmailValidatorWithDomainAndSubdomain();
-echo("<br>");
+echo ("<br>");
 $test->TestEmailValidatorWithTwoDot();
-echo("<br>");
+echo ("<br>");
 $test->TestEmailValidatorWithNumberOnFirstCharacter();
-echo("<br>");
+echo ("<br>");
 $test->TestEmailValidatorWithOneCharacterAfterDot();
-echo("<br>");
+echo ("<br>");
+
+$test->TestPasswordValidationWithTheConditions();
+echo ('<br>');
+$test->TestPasswordValidationShorterThanEightCharacters();
+echo ('<br>');
+$test->TestPasswordValidationWithoutLowercaseCharacter();
+echo ('<br>');
+$test->TestPasswordValidationWithoutUppercaseCharacter();
+echo ('<br>');
+$test->TestPasswordValidationWithoutSpecialCharacter();
+echo ('<br>');
